@@ -1,0 +1,10 @@
+*.csv
+*.item
+\.vscode/*
+env/*
+*.log
+*.pth
+*.gz
+*.inter
+*.item
+*log_tensor*

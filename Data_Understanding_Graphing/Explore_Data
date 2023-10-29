@@ -1,0 +1,30 @@
+import os
+import csv
+import pandas as pd
+import plotly.express as px
+
+cwd = os.getcwd()  # Get the current working directory (cwd)
+df = pd.read_csv(cwd + "\CS490\instacart-market-basket-analysis\orders.csv\orders.csv")
+
+# plot order hour of day & frequency
+df['order_hour_of_day'].value_counts().sort_index().plot(kind='bar', xlabel = "Order Hour of Day", ylabel = "Number of Orders")
+
+# plot order day of week & frequency
+df['order_dow'].value_counts().sort_index().plot(kind='bar', xlabel = "Order Day of Week", ylabel = "Number of Orders")
+
+# open & combine prior and train
+df1 = pd.read_csv(cwd + "\CS490\instacart-market-basket-analysis\order_products__prior.csv\order_products__prior.csv")
+df2 = pd.read_csv(cwd + "\CS490\instacart-market-basket-analysis\order_products__train.csv\order_products__train.csv")
+merged_df = pd.concat([df1, df2])
+
+# open products
+prod_df = pd.read_csv(cwd + "\CS490\instacart-market-basket-analysis\products.csv\products.csv")
+
+# merge products with orders train & test
+merged_df = pd.merge(merged_df, prod_df, on = 'product_id')
+
+# plot top 50 products
+merged_df['product_name'].value_counts()[:50].plot(kind='bar', xlabel = "Product ID", ylabel = "Number of Times Ordered", figsize = (10,4))
+
+# plot ordered:reordered ratio
+merged_df['reordered'].value_counts().plot(kind='bar', xlabel = "Reordered?", ylabel = "Number of Times Reordered")

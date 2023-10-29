@@ -1,0 +1,36 @@
+# Training and evaluation config
+model: MultiVAE
+data_path: C:\Users\dtrag\Documents\CS490-Capstone\RecBole PreProcessing\dataset
+dataset: orders
+USER_ID_FIELD: user_id
+ITEM_ID_FIELD: product_id
+TIME_FIELD: last_time_ordered
+load_col: 
+inter: ['user_id', 'product_id', 'last_time_ordered']
+# save_dataloaders: True
+# save_dataset: True
+latent_dimendion: 100
+mlp_hidden_size: [300]
+show_progress: False
+train_neg_sample_args:
+    distribution: uniform
+    sample_num: 1
+    alpha: 1.0
+    dynamic: False
+    candidate_num: 0
+# embedding_size: 128
+epochs: 20
+enable_amp: True
+enable_scaler: True
+train_batch_size: 2048
+eval_batch_size: 8192
+eval_step: 5
+eval_args:
+    group_by: user
+    order: TO
+    split: {'RS': [0.8,0.1,0.1]}
+    mode: full
+metrics: ['NDCG'] #'MRR', 'NDCG', 'Hit'
+topk: 20
+valid_metric: NDCG@20
+metric_decimal_place: 4
