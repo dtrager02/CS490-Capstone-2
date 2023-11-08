@@ -9,8 +9,8 @@ load_col:
 inter: ['user_id', 'product_id', 'last_time_ordered']
 # save_dataloaders: True
 # save_dataset: True
-latent_dimendion: 100
-mlp_hidden_size: [300]
+latent_dimendion: 50
+mlp_hidden_size: [200]
 show_progress: False
 train_neg_sample_args:
     distribution: uniform
@@ -20,8 +20,8 @@ train_neg_sample_args:
     candidate_num: 0
 # embedding_size: 128
 epochs: 20
-enable_amp: True
-enable_scaler: True
+enable_amp: False
+enable_scaler: False
 train_batch_size: 2048
 eval_batch_size: 8192
 eval_step: 5

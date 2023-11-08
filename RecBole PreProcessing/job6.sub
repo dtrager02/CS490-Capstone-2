@@ -1,0 +1,32 @@
+#!/bin/bash
+
+#SBATCH -J hello
+#SBATCH --partition gorman-gpu
+#SBATCH -N 1                 # one CPU core
+#SBATCH -c 1
+#SBATCH -t 30:00
+#SBATCH -o hello-%j.out
+#SBATCH -A gorman-gpu
+
+#SBATCH --gpus 1
+
+python --version
+# Run python script
+module load anaconda
+conda init bash
+lscpu
+export OMP_NUM_THREADS=40
+export OMP_SCHEDULE=STATIC
+export OMP_PROC_BIND=CLOSE
+conda activate env
+pip install --upgrade recbole ray[tune] hyperopt kmeans_pytorch
+pip install gdown
+mkdir dataset
+mkdir dataset/orders
+cd /content
+mv orders.inter ./dataset/orders/orders.inter
+gdown 179fp7_HBgAcSunq42SdqDMKXZppM-FAj
+nvidia-smi
+python --version
+#pip install torch numpy
+python -u recbole_testing.py
