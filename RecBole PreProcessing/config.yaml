@@ -9,7 +9,7 @@ load_col:
 inter: ['user_id', 'product_id', 'last_time_ordered']
 # save_dataloaders: True
 # save_dataset: True
-latent_dimendion: 50
+latent_dimension: 50
 mlp_hidden_size: [200]
 show_progress: False
 train_neg_sample_args:
