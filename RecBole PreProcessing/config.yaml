@@ -1,6 +1,6 @@
 # Training and evaluation config
 model: MultiVAE
-data_path: C:\Users\dtrag\Documents\CS490-Capstone\RecBole PreProcessing\dataset
+data_path: ./dataset
 dataset: orders
 USER_ID_FIELD: user_id
 ITEM_ID_FIELD: product_id
