@@ -6,12 +6,12 @@ USER_ID_FIELD: user_id
 ITEM_ID_FIELD: product_id
 TIME_FIELD: last_time_ordered
 load_col: 
-    inter: ['user_id', 'product_id', 'last_time_ordered']
+    inter: ['user_id', 'product_id', 'sum', 'mean', 'last_time_ordered', 'label']
     item: ['product_id', 'product_name', 'aisle_id', 'department_id']
     user: ['user_id'] 
 # save_dataloaders: True
 # save_dataset: True
-LABEL_FIELD: 1.0
+LABEL_FIELD: label
 show_progress: True
 train_neg_sample_args:
     distribution: uniform
@@ -20,6 +20,7 @@ train_neg_sample_args:
     dynamic: False
     candidate_num: 0
 # embedding_size: 128
+xgb_num_boost_round: 100
 epochs: 20
 enable_amp: False
 enable_scaler: False
